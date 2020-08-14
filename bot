@@ -1,0 +1,34 @@
+import discord 
+from discord.ext import commands 
+p = '+'
+bot = commands.Bot (command_prefix = p)
+bot.remove_command('help')
+
+@bot.event 
+async def onready (): 
+    print ('BOT connected') 
+
+@bot.command ()
+async def help (ctx):
+    emb = discord.Embed (title = 'Команды',
+                    colour = discord.Color (0x25FF00))
+    emb.addfield(name = f'Команды',
+                value = f"""
+{p}help - Список всех команд
+{p}hello - Приветствие с ботом
+{p}какдела - Ну ето проста так""",
+            inline = False)
+    await ctx.send (Embed = emb)
+
+
+@bot.command ()
+async def hello (ctx):
+    await ctx.send ('Прив брадья')
+
+@bot.command()
+async def какдела (ctx):
+    await ctx.send ('с')
+
+token = open ('token.txt', 'r').readline()
+
+bot.run (token
